@@ -30,7 +30,7 @@ for line in $(plugin_read_list CACHE_FROM) ; do
 
   echo "~~~ :docker: Pulling cache image for $service_name"
   if retry "$pull_retries" plugin_prompt_and_run docker pull "$service_name:$service_image" ; then
-    printf -v "$cache_image_name" "%s" "$service_image"
+    printf -v "$cache_image_name" "%s" "$service_name:$service_image"
   else
     echo "!!! :docker: Pull failed. $service_image will not be used as a cache for $service_name"
   fi
